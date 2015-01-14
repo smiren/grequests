@@ -119,7 +119,7 @@ def map(requests, stream=False, size=None, exception_handler=None):
     for request in requests:
         if request.response:
             ret.append(request.response)
-        elif exception_handler:
+        elif exception_handler and hasattr(request, 'exception'):
             exception_handler(request, request.exception)
 
     return ret
